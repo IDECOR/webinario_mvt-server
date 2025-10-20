@@ -1,18 +1,46 @@
-# Webinario MVT Server para trabajar con datos geoespaciales
+# Webinario: MVT Server para trabajar con datos geoespaciales
 
-## Material de Trabajo
+## 📦 Material de trabajo
 
-### Capas
+### 🧾 Requisitos previos
+- Tener instalado **PostgreSQL** (v12+ recomendado).  
+- Extensión **PostGIS** instalada y habilitada en la base de datos.  
+- Herramientas útiles: `psql`, `ogr2ogr` (parte de GDAL).  
+- Acceso de escritura a la base de datos (usuario con permisos para crear tablas / esquemas).
 
-Las capas puede subirse todas juntas al servidor Postgres/Postgis mediante el script **migrar_a_postgresql.sh**
+---
 
-- Colocar todas las capas en único directorio, las capas deben estar en formato json (las que estén en zip, descomprimirlas antes), además colocar el script migrar_a_postgresql.sh. 
-- Ejecutar el script.
+### 🗺️ Capas
 
-Esto debe funcionar sin problema en cualquier sistema Unix-like
+Las capas pueden cargarse todas juntas en el servidor **PostgreSQL/PostGIS** utilizando el script **`migrar_a_postgresql.sh`**.
 
-Otra manera es cargar las capas en QGis y desde ahí exportarlas a Postgresql
+#### Pasos
 
-### Styles
+1. Colocar **todas las capas** en un único directorio.  
+   - Las capas deben estar en formato **`.json`**.  
+   - Si alguna capa está comprimida en **`.zip`**, descomprímela antes.  
+2. Copiar el script **`migrar_a_postgresql.sh`** en el mismo directorio.  
+3. **Modificar los parámetros de conexión** dentro del script para que apunten a tu base de datos (host, puerto, nombre de la base, usuario y contraseña).  
+   - Ejemplo de variables en el script:
+     ```sh
+     PG_HOST="10.1.1.89"
+     PG_DB="db_webinario"
+     PG_USER="user"
+     PG_PASS="password"
+     PG_SCHEMA="public"
+     ```
+4. Ejecutar el script desde la terminal:
+   ```bash
+   ./migrar_a_postgresql.sh
 
-El archivo styles.zip contiene los ejmplos de styles usados en el webinario
+
+### 🎨 Styles
+
+El archivo **`styles.zip`** contiene los **estilos de ejemplo** utilizados durante el webinario.  
+
+#### Instrucciones de uso
+
+1. Descomprimí el archivo `styles.zip` en una carpeta de tu preferencia.  
+2. Dentro encontrarás ejemplos de **estilos en formato JSON**, compatibles con **MapLibre GL** o **Mapbox GL JS**.  
+3. Podés abrirlos, modificarlos y adaptarlos a tus propias capas y fuentes de datos.  
+4. Si los nombres de las capas o campos en tu base difieren de los del ejemplo, ajustá esos valores dentro del archivo de estilo.
